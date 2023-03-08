@@ -3,5 +3,12 @@
 </ul>
 
 <button (click)="borrarHeroe()">Borrar Heroe</button>
+<span *ngIf=" heroeBorrado !== ''; else noBorrado">
+    <h3>Heroe Borrado</h3>
+    <p>{{heroeBorrado}}</p>
+</span>
 
-<p>{{heroeBorrado}}</p>
+<ng-template #noBorrado>
+    <p>No ha borrado nada aun</p>
+</ng-template>
+
