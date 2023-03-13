@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
+interface Personaje {
+  Nombre: string;
+  Poder: number;
+}
+
 @Component({
   selector: 'app-main-page',
   templateUrl: './main-page.component.html',
@@ -7,9 +12,36 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainPageComponent{
 
-  constructor() { }
+  personajes: Personaje[] = [
+    {
+      Nombre: 'Goku',
+      Poder: 15000
+    },
+    {
+      Nombre: 'Vegetta',
+      Poder: 777
+    }
 
-  ngOnInit(): void {
+  ]
+
+  nuevo: Personaje = {
+    Nombre: 'Truncks',
+    Poder: 7000
   }
+
+ agregar(){
+  this.personajes.push(this.nuevo);
+  this.nuevo = {
+    Nombre: '',
+    Poder: 0
+  }
+  console.log(this.personajes);
+ }
+
+ cambiarNombre(event: any){
+  if(this.nuevo.Nombre.trim().length === 0){
+    return;
+  }
+ }
 
 }
