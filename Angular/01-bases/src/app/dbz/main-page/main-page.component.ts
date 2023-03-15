@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Personaje } from '../interfaces/dbz.interface';
+import { DbzService } from '../services/dbz.services';
 
 @Component({
   selector: 'app-main-page',
@@ -8,36 +9,46 @@ import { Personaje } from '../interfaces/dbz.interface';
 })
 export class MainPageComponent{
 
-  personajes: Personaje[] = [
-    {
-      Nombre: 'Goku',
-      Poder: 15000
-    },
-    {
-      Nombre: 'Vegetta',
-      Poder: 777
+  //Constructores
+    constructor(private dbzService: DbzService){}
+
+  //Variables
+    personajes: Personaje[] = [
+      {
+        Nombre: 'Goku',
+        Poder: 15000
+      },
+      {
+        Nombre: 'Vegetta',
+        Poder: 777
+      }
+  
+    ]
+  
+    nuevo: Personaje = {
+      Nombre: 'Truncks',
+      Poder: 7000
     }
 
-  ]
-
-  nuevo: Personaje = {
-    Nombre: 'Truncks',
-    Poder: 7000
-  }
-
- agregar(){
-  this.personajes.push(this.nuevo);
-  this.nuevo = {
-    Nombre: '',
-    Poder: 0
-  }
-  console.log(this.personajes);
- }
-
- cambiarNombre(event: any){
-  if(this.nuevo.Nombre.trim().length === 0){
-    return;
-  }
- }
+  //Métodos
+   agregar(){
+    this.personajes.push(this.nuevo);
+    this.nuevo = {
+      Nombre: '',
+      Poder: 0
+    }
+    console.log(this.personajes);
+   }
+  
+   cambiarNombre(event: any){
+    if(this.nuevo.Nombre.trim().length === 0){
+      return;
+    }
+   }
+  
+   agregarNuevoPersonaje(argumento: Personaje){
+    console.log(argumento)
+    this.personajes.push(argumento);
+   }
 
 }
